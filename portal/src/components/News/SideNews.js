@@ -14,7 +14,7 @@ class SideNews extends Component {
   }
 
   renderItems() {
-    return this.state.news.map((item) => (
+    return this.state.news?.map((item) => (
       <SingleSide key={item.url} item={item} />
     ));
   }
