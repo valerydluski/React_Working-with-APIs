@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import NewSingle from './NewSingle';
 
-export default class News extends Component {
+class News extends Component {
   constructor(props) {
     super(props);
-    this.state= {
+    this.state = {
       news: [],
-    }
+    };
   }
 
   componentDidMount() {
-    const url ='https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=e2497413ff0b4b4db1cef731a0591bfc';
+    const url = `https://newsapi.org/v2/${this.props.news.type}?${this.props.news.query}&apiKey=e2497413ff0b4b4db1cef731a0591bfc`;
 
     fetch(url)
       .then((response) => {
@@ -27,7 +27,7 @@ export default class News extends Component {
   renderItems() {
     return this.state.news.map((item) => (
       <NewSingle key={item.url} item={item} />
-    ))
+    ));
   }
 
   render() {
@@ -35,6 +35,8 @@ export default class News extends Component {
       <div className="row">
         {this.renderItems()}
       </div>
-    )
+    );
   }
 }
+
+export default News;
